@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Content from './Content';
-import { getMovieList } from './Api';
 import { CategoryName } from './Movies';
-import { GetMoviesPayload, Movie } from './Payload/GetMoviesPayload';
+import { GetMoviesPayload } from './Payload/GetMoviesPayload';
 import useAxios from './Hooks/useHooks';
 
 interface ListProps {

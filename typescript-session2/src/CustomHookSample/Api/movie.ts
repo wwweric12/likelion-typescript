@@ -8,7 +8,7 @@ type GetMovieListProps = {
 
 export const getMovieList = async ({ option }: GetMovieListProps) => {
   const res = await axios.get<GetMoviesPayload>(
-    w
+    `https://api.themoviedb.org/3/movie/${option}?language=en-US&page=1`,
     {
       headers: {
         accept: 'application/json',
