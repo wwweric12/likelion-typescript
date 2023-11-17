@@ -1,6 +1,14 @@
 import useSWR from 'swr';
-import { fetcher } from '../../api/fetcher';
+import { fetcher } from '../api/fetcher';
 import styled from 'styled-components';
+
+interface UsersData {
+  data: Data;
+}
+
+interface Data {
+  users: RegisterData[];
+}
 
 interface RegisterData {
   email: string;
@@ -9,17 +17,12 @@ interface RegisterData {
 }
 
 const Users = () => {
-  const { data, error, isLoading } = useSWR(
-    `${process.env.REACT_APP_BASE_URL}/api/users`,
-    fetcher,
-  );
-
-  console.log(data);
+  const { data, error } = useSWR<UsersData>('/api/users', fetcher); 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
   return (
     <>
-      {data.data.users.map((item: RegisterData, index: number) => (
+      {data.data.users.map((item, index) => (
         <UsersContainer key={index}>
           <span>{item.email}</span>
           <span>{item.password}</span>

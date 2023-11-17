@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const Header = () => {
   return (
     <HeaderContainer>
-      <Link to="/users"> User List</Link>
-      <Link to="/register"> Sign up</Link>
-      <Link to="/login"> Login</Link>
+      <Link to="/users">User List</Link>
+      <Link to="/register">Sign up</Link>
+      <Link to="/login">Login</Link>
     </HeaderContainer>
   );
 };

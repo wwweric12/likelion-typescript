@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
+import { postFetcher } from '../api/fetcher';
 import { useNavigate } from 'react-router-dom';
 
 interface LoginData {
@@ -9,35 +10,19 @@ interface LoginData {
 }
 
 const Login = () => {
-  const navigate = useNavigate();
-  async function loginUser(url: string, { arg }: { arg: LoginData }) {
-    await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(arg),
-    }).then((res) => {
-      if (res.status === 200) {
-        res.json().then((result) => {
-          alert(result.data);
-        });
-        navigate('/users');
-      } else {
-        res.json().then((result) => {
-          alert(result.error);
-        });
-      }
-    });
-  }
-
   const { register, handleSubmit } = useForm<LoginData>();
-  const { trigger } = useSWRMutation(
-    `${process.env.REACT_APP_BASE_URL}/api/auth/login`,
-    loginUser,
-  );
-  const onSubmit: SubmitHandler<LoginData> = (data) => {
-    trigger(data);
+  const navigate = useNavigate();
+  const { trigger } = useSWRMutation('/api/auth/login', postFetcher, {
+    onSuccess: async (data) => {
+      const resJson = await data.json();
+      if (data.status == 200) {
+        navigate('/users');
+      }
+      alert(resJson.data);
+    },
+  });
+  const onSubmit: SubmitHandler<LoginData> = (item) => {
+    trigger(item);
   };
 
   return (

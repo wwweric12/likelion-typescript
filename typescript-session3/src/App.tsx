@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './assets/pages/Login';
-import Register from './assets/pages/Register';
-import Users from './assets/pages/Users';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Users from './pages/Users';
 import Header from './Header';
 
 function App() {
