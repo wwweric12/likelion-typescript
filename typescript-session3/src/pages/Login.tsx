@@ -15,10 +15,10 @@ const Login = () => {
   const { trigger } = useSWRMutation('/api/auth/login', postFetcher, {
     onSuccess: async (data) => {
       const resJson = await data.json();
+      alert(resJson.data);
       if (data.status == 200) {
         navigate('/users');
       }
-      alert(resJson.data);
     },
   });
   const onSubmit: SubmitHandler<LoginData> = (item) => {

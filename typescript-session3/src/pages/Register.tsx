@@ -15,12 +15,11 @@ const Register = () => {
   const navigate = useNavigate();
   const { trigger } = useSWRMutation('/api/auth/register', postFetcher, {
     onSuccess: async (data) => {
-      console.log(data);
       const resJson = await data.json();
-      if (data.status == 200) {
-        navigate('/users');
-      }
       alert(resJson.data);
+      if (data.status == 200) {
+        navigate('/login');
+      }
     },
   });
   const onSubmit: SubmitHandler<RegisterData> = (data) => {

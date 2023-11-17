@@ -7,17 +7,17 @@ interface UsersData {
 }
 
 interface Data {
-  users: RegisterData[];
+  users: User[];
 }
 
-interface RegisterData {
+interface User {
   email: string;
   password: string;
   username: string;
 }
 
 const Users = () => {
-  const { data, error } = useSWR<UsersData>('/api/users', fetcher); 
+  const { data, error } = useSWR<UsersData>('/api/users', fetcher);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
   return (
