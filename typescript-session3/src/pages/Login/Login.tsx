@@ -8,6 +8,7 @@ import { validation } from './Validation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { LoginError } from '../../type/PostLoginPayload';
+import Button from '../../ds/components/ButtonComponent';
 
 interface LoginData {
   email: string;
@@ -75,7 +76,7 @@ const Login = () => {
               onBlur={() => hookTrigger('password')}
             />
           </InputContainer>
-          <button type="submit">로그인</button>
+          <Button type="submit">로그인</Button>
         </LoginForm>
       </LoginContainer>
     </LoginFrame>
