@@ -1,11 +1,9 @@
 import * as yup from 'yup';
 export const validation = yup.object().shape({
+  username: yup.string().required('이름을 입력해주세요'),
   email: yup
     .string()
-    .required('아이디를 다시입력해주세요')
-    .matches(/^(?=.*[a-zA-Z0-9]).{2,10}$/, '아이디를 다시입력해주세요'),
-  password: yup
-    .string()
-    .required('비밀번호를 다시입력해주세요')
-    .matches(/^(?=.*[a-zA-Z0-9]).{4,16}$/, '비밀번호를 다시입력해주세요'),
+    .required('이메일을 입력해주세요')
+    .email('이메일 형식이 올바르지 않습니다'),
+  password: yup.string().required('비밀번호를 입력해주세요'),
 });

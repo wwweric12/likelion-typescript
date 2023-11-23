@@ -31,7 +31,7 @@ const HeaderContainer = styled.div`
   height: 70px;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid ${({ theme }) => theme.color.gray1};
+  border-bottom: 1px solid ${({ theme }) => theme.color.gray3};
   position: sticky;
   top: 0;
   background-color: white;

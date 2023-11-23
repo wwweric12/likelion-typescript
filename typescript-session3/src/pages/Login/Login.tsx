@@ -33,7 +33,7 @@ const Login = () => {
     onSuccess: async (data) => {
       const resJson = await data.json();
       if (data.status == 200) {
-        alert(resJson.data);
+        alert(resJson.data.message);
         navigate('/users');
       } else {
         setError(resJson);
@@ -86,6 +86,7 @@ export default Login;
 
 const LoginFrame = styled.div`
   width: 100%;
+  height: 1080px;
   gap: 100px;
   display: flex;
   justify-content: center;
@@ -97,7 +98,7 @@ const LoginContainer = styled.div`
   gap: 70px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
 `;
 
