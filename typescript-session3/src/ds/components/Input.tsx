@@ -15,6 +15,7 @@ interface InputProps<T extends FieldValues> {
   error?: boolean;
   errorMessage?: string;
   onBlur: () => void;
+  onFocus: () => void;
 }
 
 const Input = <T extends FieldValues>({
@@ -26,6 +27,7 @@ const Input = <T extends FieldValues>({
   error,
   errorMessage,
   onBlur,
+  onFocus,
 }: InputProps<T>) => {
   return (
     <InputContainer>
@@ -35,6 +37,7 @@ const Input = <T extends FieldValues>({
         type={type}
         {...register(type, { required })}
         onBlur={onBlur}
+        onFocus={onFocus}
       />
       {errorsType && <ErrorMessage>{errorsType?.message}</ErrorMessage>}
       {error && !errorsType && <ErrorMessage>{errorMessage}</ErrorMessage>}

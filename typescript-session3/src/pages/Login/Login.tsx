@@ -19,6 +19,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    clearErrors,
     trigger: hookTrigger,
     formState: { errors },
   } = useForm<LoginData>({
@@ -64,6 +65,7 @@ const Login = () => {
               }
               errorMessage={error?.error.message}
               onBlur={() => hookTrigger('email')}
+              onFocus={() => clearErrors('email')}
             />
             <Input<LoginData>
               title="비밀번호"
@@ -74,6 +76,7 @@ const Login = () => {
               error={error?.error.code === 'wrong_password' ? true : false}
               errorMessage={error?.error.message}
               onBlur={() => hookTrigger('password')}
+              onFocus={() => clearErrors('password')}
             />
           </InputContainer>
           <Button type="submit">로그인</Button>

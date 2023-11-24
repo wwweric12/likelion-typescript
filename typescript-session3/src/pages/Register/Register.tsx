@@ -20,6 +20,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    clearErrors,
     trigger: hookTrigger,
     formState: { errors },
   } = useForm<RegisterData>({
@@ -61,6 +62,7 @@ const Register = () => {
               required
               errorsType={errors.username}
               onBlur={() => hookTrigger('username')}
+              onFocus={() => clearErrors('username')}
             />
             <Input<RegisterData>
               title="이메일"
@@ -71,6 +73,7 @@ const Register = () => {
               error={error?.error.code === 'conflict_email' ? true : false}
               errorMessage={error?.error.message}
               onBlur={() => hookTrigger('email')}
+              onFocus={() => clearErrors('email')}
             />
             <Input<RegisterData>
               title="비밀번호"
@@ -79,6 +82,7 @@ const Register = () => {
               required
               errorsType={errors.password}
               onBlur={() => hookTrigger('password')}
+              onFocus={() => clearErrors('password')}
             />
           </InputContainer>
           <ButtonComponent type="submit">회원가입</ButtonComponent>
