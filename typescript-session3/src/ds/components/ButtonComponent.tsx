@@ -20,6 +20,12 @@ const Button = styled.button`
   width: 100%;
   padding: 14px 16px;
   ${({ theme }) => theme.typography.title1}
-  background: linear-gradient(93deg, #CF0 -3.88%, #40FFAF 103.41%);
+  background: linear-gradient(93.04deg, #CCFF00 -3.88%, #40FFAF 103.41%);
   border-radius: 12px;
+  &:hover {
+    background: linear-gradient(93.04deg, #beed04 -3.88%, #2ff19f 103.41%);
+  }
+  &:active {
+    background: linear-gradient(93.04deg, #b1de00 -3.88%, #1de08e 103.41%);
+  }
 `;
