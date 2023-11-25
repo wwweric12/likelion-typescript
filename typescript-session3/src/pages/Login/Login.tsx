@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { LoginError } from '../../type/PostLoginPayload';
 import Button from '../../ds/components/ButtonComponent';
+import { useSessionStore } from '../../stores/session';
 
 interface LoginData {
   email: string;
@@ -27,6 +28,7 @@ const Login = () => {
     mode: 'onSubmit',
   });
 
+  const login = useSessionStore((state) => state.login);
   const [error, setError] = useState<LoginError>();
 
   const navigate = useNavigate();
@@ -35,7 +37,8 @@ const Login = () => {
       const resJson = await data.json();
       if (data.status == 200) {
         alert(resJson.data.message);
-        navigate('/users');
+        login({ jwt: resJson.data.jwt, username: resJson.data.username });
+        navigate('/');
       } else {
         setError(resJson);
         alert(resJson.error.message);

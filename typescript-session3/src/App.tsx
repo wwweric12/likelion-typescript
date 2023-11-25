@@ -8,34 +8,39 @@ import GlobalStyle from './styles/GlobalStyles';
 import { GlobalFotnts } from './styles/GlobalFonts';
 import Header from './ds/components/Header';
 import { useEffect, useState } from 'react';
-import { Tabs } from './ds/components/TabBar';
+import { Tab } from './ds/components/TabBar';
+import { useSessionStore } from './stores/session';
 
 function App() {
   const navigate = useNavigate();
-  const [tabStatus, setTabStatus] = useState({
-    login: true,
-    register: false,
-  });
+  const [tabStatus, setTabStatus] = useState<'login' | 'register' | null>();
 
   const location = useLocation();
+  const username = useSessionStore((state) => state.username);
+  const logout = useSessionStore((state) => state.logout);
+  const handleLogout = () => {
+    alert('로그아웃 하셨습니다!');
+    logout();
+    navigate('/login');
+  };
 
   useEffect(() => {
     if (location.pathname == '/login') {
-      setTabStatus({ login: true, register: false });
+      setTabStatus('login');
     } else if (location.pathname == '/register') {
-      setTabStatus({ login: false, register: true });
+      setTabStatus('register');
     } else {
-      setTabStatus({ login: false, register: false });
+      setTabStatus(null);
     }
   }, [location.pathname]);
 
-  const tabs: Tabs[] = [
+  const tabs: Tab[] = [
     {
       id: 0,
       title: '로그인',
       onClick: () => {
         navigate('/login');
-        setTabStatus({ login: true, register: false });
+        setTabStatus('login');
       },
       path: 'login',
     },
@@ -44,7 +49,7 @@ function App() {
       title: '회원가입',
       onClick: () => {
         navigate('/register');
-        setTabStatus({ login: false, register: true });
+        setTabStatus('register');
       },
       path: 'register',
     },
@@ -58,8 +63,10 @@ function App() {
         onClickLogo={() => {
           navigate('/');
         }}
+        username={username}
         tabs={tabs}
         tabStatus={tabStatus}
+        handleLogout={handleLogout}
       />
       <Routes>
         <Route path="/login" element={<Login />} />

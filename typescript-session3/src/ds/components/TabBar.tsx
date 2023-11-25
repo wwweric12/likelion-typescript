@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import Tab from './Tab';
-import { TabStatus } from './Header';
+import TabComp from './Tab';
 
-export interface Tabs {
+export interface Tab {
   id: number;
   title: string;
   onClick: () => void;
@@ -10,21 +9,21 @@ export interface Tabs {
 }
 
 interface TabBarProps {
-  tabs: Tabs[];
-  tabStatus: TabStatus;
+  tabs: Tab[];
+  tabStatus?: 'login' | 'register' | null;
 }
 
 const TabBar = ({ tabs, tabStatus }: TabBarProps) => {
   return (
     <TabContainer>
       {tabs.map((item) => (
-        <Tab
-          isActive={tabStatus[item.path]}
+        <TabComp
+          isActive={item.path === tabStatus ? true : false}
           key={item.id}
           onClick={item.onClick}
         >
           {item.title}
-        </Tab>
+        </TabComp>
       ))}
     </TabContainer>
   );

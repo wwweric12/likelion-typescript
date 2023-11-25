@@ -1,4 +1,4 @@
-export interface UsersData {
+export interface GetUsersPayload {
   data: Data;
 }
 

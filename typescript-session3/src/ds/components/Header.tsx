@@ -1,24 +1,35 @@
 import styled from 'styled-components';
 import { ReactComponent as Lion } from '../icons/lion.svg';
-import TabBar, { Tabs } from './TabBar';
+import TabBar, { Tab } from './TabBar';
+import TabComp from './Tab';
 
 interface HeaderProps {
   onClickLogo: () => void;
-  tabs: Tabs[];
-  tabStatus: TabStatus;
+  tabs: Tab[];
+  tabStatus?: 'login' | 'register' | null;
+  username: string | null;
+  handleLogout: () => void;
 }
 
-export interface TabStatus {
-  login: boolean;
-  register: boolean;
-}
-
-const Header = ({ onClickLogo, tabs, tabStatus }: HeaderProps) => {
+const Header = ({
+  onClickLogo,
+  tabs,
+  tabStatus,
+  username,
+  handleLogout,
+}: HeaderProps) => {
   return (
     <HeaderContainer>
       <InnerContaiener>
         <Logo onClick={onClickLogo} />
-        <TabBar tabs={tabs} tabStatus={tabStatus} />
+        {username ? (
+          <>
+            <TabComp>{username}님 환영합니다!</TabComp>
+            <TabComp onClick={() => handleLogout()}>로그아웃</TabComp>
+          </>
+        ) : (
+          <TabBar tabs={tabs} tabStatus={tabStatus} />
+        )}
       </InnerContaiener>
     </HeaderContainer>
   );

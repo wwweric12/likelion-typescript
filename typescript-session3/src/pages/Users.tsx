@@ -1,12 +1,12 @@
 import useSWR from 'swr';
 import { fetcher } from '../api/fetcher';
 import styled from 'styled-components';
-import { UsersData } from '../type/GetUsersPayload';
+import { GetUsersPayload } from '../type/GetUsersPayload';
 import Card from '../ds/components/Card';
 import { ReactComponent as BigLion } from '../ds/icons/BigLion.svg';
 
 const Users = () => {
-  const { data, error } = useSWR<UsersData>('/api/users', fetcher);
+  const { data, error } = useSWR<GetUsersPayload>('/api/users', fetcher);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
   return (

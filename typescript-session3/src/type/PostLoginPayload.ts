@@ -3,7 +3,8 @@ export interface LoginData {
 }
 
 export interface Data {
-  code: string;
+  jwt: string;
+  username: string;
   message: string;
 }
 

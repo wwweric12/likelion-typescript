@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 
 interface TabProps {
   isActive?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Tab = ({
